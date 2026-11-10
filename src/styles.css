@@ -176,3 +176,15 @@ body { color: #172b45; background: #f3f7fb; }
 .primary-button { color: #176d9f; border-color: rgba(27,120,181,.42); background: linear-gradient(100deg, rgba(27,120,181,.12), rgba(27,120,181,.05)); }.primary-button:hover { border-color: #1b78b5; background: rgba(27,120,181,.16); }
 .notice-dialog { background: linear-gradient(145deg, #fff, #f2f7fb); border-color: #b9cede; box-shadow: 0 26px 80px rgba(20,49,79,.22); }.notice-dialog h2 { color: #173551; }.notice-dialog p { color: #61758b; }
 @media (max-width: 760px) { .mobile-menu { background: rgba(9,35,63,.96); border-color: #416786; color: #fff; } }
+
+/* Preview-style segmented workspace navigation */
+.top-section-nav { height: 47px; border-bottom: 1px solid #d3dfeb; background: rgba(255,255,255,.72); backdrop-filter: blur(12px); overflow-x: auto; position: relative; z-index: 2; }
+.top-section-nav-inner { max-width: 1600px; min-width: max-content; height: 100%; margin: 0 auto; padding: 0 34px; display: flex; align-items: center; gap: 4px; }
+.top-section-label { color: #8a9caf; font: 8px var(--mono); letter-spacing: .14em; margin-right: 8px; }
+.top-section-nav button { height: 29px; border: 1px solid transparent; border-radius: 4px; padding: 0 11px; background: transparent; color: #6d8297; display: inline-flex; align-items: center; gap: 7px; font-size: 10px; white-space: nowrap; transition: .2s ease; }
+.top-section-nav button span { color: #9bacbc; font: 8px var(--mono); }
+.top-section-nav button:hover { color: #173551; background: #eef4f9; }
+.top-section-nav button.active { color: #154d79; border-color: rgba(27,120,181,.25); background: rgba(27,120,181,.10); box-shadow: inset 0 -2px 0 #e9782d; }
+.top-section-nav button.active span { color: #e9782d; }
+@media (max-width: 1250px) { .top-section-nav-inner { padding-left: 24px; padding-right: 24px; } }
+@media (max-width: 760px) { .top-section-nav { height: 43px; }.top-section-nav-inner { padding: 0 16px 0 62px; gap: 2px; }.top-section-label { display: none; }.top-section-nav button { padding: 0 9px; font-size: 9px; }.top-section-nav button span { display: none; } }

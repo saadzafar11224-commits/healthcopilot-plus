@@ -122,16 +122,24 @@ function SideNav({ screen, setScreen, unread }: { screen: ScreenId; setScreen: (
 }
 
 function TopBar({ crew, setCrew, setScreen, screen, missionTime }: { crew: CrewProfile; setCrew: (id: string) => void; setScreen: (screen: ScreenId) => void; screen: ScreenId; missionTime: string }) {
-  return <header className="top-bar">
-    <div className="mobile-brand"><div className="brand-mark"><span /><span /></div><b>HC<span>+</span></b></div>
-    <div className="crumb"><span>Mission /</span><b>{[...navItems, ...utilityItems].find(item => item.id === screen)?.label ?? 'Today'}</b></div>
-    <div className="top-actions">
-      <div className="mission-clock"><Icon name="clock" size={15} /><span>MISSION TIME</span><b>{missionTime}</b></div>
-      <div className="crew-select"><div className="crew-avatar small">{crew.initials}</div><span className="preview-crew-label">PREVIEW</span><select value={crew.id} onChange={event => setCrew(event.target.value)} aria-label="Preview synthetic crew context">{crewProfiles.map(person => <option key={person.id} value={person.id}>{person.name}</option>)}</select><Icon name="chevron" size={13} /></div>
-      <button className="icon-button" aria-label="Open notifications" onClick={() => setScreen('alerts')}><Icon name="bell" /><span className="notification-dot" /></button>
-      <button className="avatar-button" aria-label="Crew profile">{crew.initials}</button>
-    </div>
-  </header>
+  return <>
+    <header className="top-bar">
+      <div className="mobile-brand"><div className="brand-mark"><span /><span /></div><b>HC<span>+</span></b></div>
+      <div className="crumb"><span>Mission /</span><b>{[...navItems, ...utilityItems].find(item => item.id === screen)?.label ?? 'Today'}</b></div>
+      <div className="top-actions">
+        <div className="mission-clock"><Icon name="clock" size={15} /><span>MISSION TIME</span><b>{missionTime}</b></div>
+        <div className="crew-select"><div className="crew-avatar small">{crew.initials}</div><span className="preview-crew-label">PREVIEW</span><select value={crew.id} onChange={event => setCrew(event.target.value)} aria-label="Preview synthetic crew context">{crewProfiles.map(person => <option key={person.id} value={person.id}>{person.name}</option>)}</select><Icon name="chevron" size={13} /></div>
+        <button className="icon-button" aria-label="Open notifications" onClick={() => setScreen('alerts')}><Icon name="bell" /><span className="notification-dot" /></button>
+        <button className="avatar-button" aria-label="Crew profile">{crew.initials}</button>
+      </div>
+    </header>
+    <nav className="top-section-nav" aria-label="Workspace sections">
+      <div className="top-section-nav-inner">
+        <span className="top-section-label">WORKSPACE</span>
+        {[...navItems, ...utilityItems].map(item => <button key={item.id} className={screen === item.id ? 'active' : ''} aria-current={screen === item.id ? 'page' : undefined} onClick={() => setScreen(item.id)}><span>{item.short}</span>{item.label}</button>)}
+      </div>
+    </nav>
+  </>
 }
 
 function Overview({ setScreen, setAlert, onInspectMetric, eventLog, openNotice }: { setScreen: (screen: ScreenId) => void; setAlert: (alert: Alert) => void; onInspectMetric: (metric: Metric) => void; eventLog: LogEntry[]; openNotice: (notice: NoticeKind) => void }) {
