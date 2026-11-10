@@ -20,9 +20,9 @@ Implementation will use a small Vite + React + TypeScript frontend with no backe
 
 Three possible movements were considered: **Orbital Operations Console** (0.07): a dark, cinematic flight-deck interface with signal lines, luminous telemetry accents, and disciplined information density; **Quiet Clinical Instrument** (0.06): a pale, calm instrument panel with soft gradients and high whitespace; **Solaris Research Terminal** (0.04): a warm, editorial science-lab interface with amber annotations and paper-like panels. The chosen direction is **Orbital Operations Console**.
 
-- **Design Movement**: premium deep-space mission control, blending NASA-style instrumentation with a calm, modern product surface.
+- **Design Movement**: NASA white-and-navy mission control, blending bright aerospace instrument panels with a calm, modern product surface.
 - **Core Principles**: evidence first; calm under pressure; status is explicit rather than colour-only; depth comes from layered panels and motion, not decoration.
-- **Color Philosophy**: graphite and ink-blue create low-light focus; an electric mint signal colour marks trustworthy data; amber marks review/uncertainty; coral is reserved for action-required states. Status chips always include text and icons so colour is never the only cue.
+- **Color Philosophy**: white and cool instrument grey create a bright operational canvas; deep navy anchors the mission rail; cobalt blue marks trustworthy telemetry; orange marks review/uncertainty; coral is reserved for action-required states. Status chips always include text and icons so colour is never the only cue.
 - **Layout Paradigm**: a left mission rail anchors navigation; a wide telemetry field carries the main content; a narrow right-side “signal rail” surfaces priority, queue, and mission context. Responsive layouts collapse the rails into a compact top bar.
 - **Signature Elements**: thin orbital arcs in the background; a “signal pulse” animation on live-quality cards; segmented timeline markers for baseline / watch / sensor-check / action states.
 - **Interaction Philosophy**: every interaction should reveal evidence or reduce uncertainty. Hover and focus states add context, not noise. Clicking a metric opens its evidence trail; actions update a visible local event log.
@@ -31,7 +31,7 @@ Three possible movements were considered: **Orbital Operations Console** (0.07):
 - **Brand Essence**: a calm, explainable mission companion for crews operating beyond immediate ground contact — precise, observant, grounded. Personality: vigilant, humane, transparent.
 - **Brand Voice**: headlines are direct and situational (“Know what changed.”); actions are bounded and honest (“Open the evidence trail”, “Queue ground review”). Avoid clinical certainty and generic wellness language.
 - **Wordmark & Logo**: “HC+” as a split-orbit monogram: two offset arcs wrapping a small central signal dot, echoed in the app mark and status animations.
-- **Signature Brand Color**: Signal Mint `#66F2C3`, used sparingly as the unmistakable HealthCopilot+ telemetry accent.
+- **Signature Brand Color**: Mission Cobalt `#1B78B5`, used sparingly as the unmistakable HealthCopilot+ telemetry accent.
 
 ## Project structure
 
