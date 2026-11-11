@@ -290,3 +290,9 @@ button { cursor: pointer; }
 .mission-orbit .orbital-satellite-path .orbital-dot::after { content: none !important; display: none !important; }
 .mission-orbit .orbital-satellite-path .orbital-dot { width: 7px !important; height: 7px !important; right: -3.5px !important; top: 22.5px !important; }
 @media (prefers-reduced-motion: reduce) { .signal-bars i, .signal-sweep { animation: none !important; }.signal-sweep { display: none; } }
+
+/* Final orbit geometry: fixed ellipse, one satellite following its exact centerline */
+.mission-orbit .orbital-satellite-path { width: 176px !important; height: 52px !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) rotate(-28deg) !important; animation: none !important; }
+.mission-orbit .orbital-satellite-path .orbital-dot { left: 0 !important; top: 0 !important; right: auto !important; width: 7px !important; height: 7px !important; transform: none !important; offset-path: ellipse(88px 26px at 50% 50%); offset-distance: 0%; offset-rotate: 0deg; animation: satelliteEllipseTravel 7s linear infinite !important; }
+@keyframes satelliteEllipseTravel { to { offset-distance: 100%; } }
+@media (prefers-reduced-motion: reduce) { .mission-orbit .orbital-satellite-path .orbital-dot { animation: none !important; offset-distance: 0%; } }
