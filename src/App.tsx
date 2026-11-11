@@ -78,10 +78,9 @@ function QualityChip({ quality }: { quality: DataQuality }) {
 }
 
 function Sparkline({ metricId, tone }: { metricId: string; tone: Tone }) {
-  const points = metricId === 'spo2' ? '4,20 18,16 32,17 46,11 60,13 74,18 88,23' : metricId === 'co2' ? '4,22 18,20 32,19 46,16 60,13 74,11 88,7' : metricId === 'sleep' ? '4,11 18,15 32,12 46,18 60,13 74,16 88,19' : '4,17 18,14 32,16 46,12 60,14 74,10 88,12'
-  return <svg className={`sparkline ${tone}`} viewBox="0 0 92 28" preserveAspectRatio="none" aria-hidden="true"><polyline points={points} /></svg>
+  const heights = metricId === 'spo2' ? [42, 58, 49, 72, 64, 38, 29] : metricId === 'co2' ? [28, 34, 41, 48, 56, 69, 78] : metricId === 'sleep' ? [58, 44, 63, 51, 70, 55, 62] : [36, 52, 43, 66, 48, 72, 57]
+  return <div className={`signal-bars ${tone}`} aria-label={`${metricId} live signal activity`}>{heights.map((height, index) => <i key={`${metricId}-${index}`} style={{ height: `${height}%` }} />)}<span className="signal-sweep" /></div>
 }
-
 function MetricCard({ metric, onInspect }: { metric: Metric; onInspect: (metric: Metric) => void }) {
   return <button className={`metric-card ${metric.quality !== 'OK' ? 'is-review' : ''}`} onClick={() => onInspect(metric)} aria-label={`Inspect ${metric.label}`}>
     <div className="metric-card-top">

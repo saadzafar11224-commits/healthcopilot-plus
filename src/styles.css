@@ -275,3 +275,18 @@ button { cursor: pointer; }
 .mission-orbit .orbital-satellite-path .orbital-dot { position: absolute; width: 7px; height: 7px; right: -3.5px; top: 22.5px; border: 0; border-radius: 50%; background: #e9782d; box-shadow: 0 0 12px #e9782d, 0 0 24px rgba(233,120,45,.42); transform: none; }
 @keyframes satellitePathRevolve { from { transform: translate(-50%, -50%) rotate(-28deg); } to { transform: translate(-50%, -50%) rotate(332deg); } }
 @media (prefers-reduced-motion: reduce) { .sparkline polyline, .trend-svg polyline, .env-chart polyline, .mission-orbit .orbital-satellite-path { animation: none !important; stroke-dashoffset: 0 !important; } }
+
+/* Clean replacement for the tiny metric charts: animated signal activity bars */
+.signal-bars { height: 34px; margin: 13px 0 7px; display: flex; align-items: end; gap: 5px; position: relative; overflow: hidden; border-bottom: 1px solid rgba(27,120,181,.12); }
+.signal-bars i { flex: 1; min-height: 5px; border-radius: 2px 2px 0 0; background: currentColor; opacity: .46; transform-origin: bottom; animation: signalBar 1.6s ease-in-out infinite; }
+.signal-bars i:nth-child(2) { animation-delay: .12s; }.signal-bars i:nth-child(3) { animation-delay: .24s; }.signal-bars i:nth-child(4) { animation-delay: .36s; }.signal-bars i:nth-child(5) { animation-delay: .48s; }.signal-bars i:nth-child(6) { animation-delay: .6s; }.signal-bars i:nth-child(7) { animation-delay: .72s; }
+.signal-bars.mint { color: #1b78b5; }.signal-bars.amber { color: #e9782d; }.signal-bars.blue { color: #2d5ea8; }.signal-bars.coral { color: #c74444; }
+.signal-sweep { position: absolute; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, transparent, currentColor, transparent); opacity: .55; animation: barSweep 2.8s linear infinite; }
+@keyframes signalBar { 0%, 100% { transform: scaleY(.72); opacity: .38; } 50% { transform: scaleY(1.08); opacity: .9; } }
+@keyframes barSweep { from { left: -4px; } to { left: calc(100% + 4px); } }
+/* Keep the full analytical charts readable and static; the compact cards carry the motion. */
+.trend-svg polyline, .env-chart polyline { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; animation: none !important; }
+/* One satellite only: the visible dot is the child locked to the matching ellipse. */
+.mission-orbit .orbital-satellite-path .orbital-dot::after { content: none !important; display: none !important; }
+.mission-orbit .orbital-satellite-path .orbital-dot { width: 7px !important; height: 7px !important; right: -3.5px !important; top: 22.5px !important; }
+@media (prefers-reduced-motion: reduce) { .signal-bars i, .signal-sweep { animation: none !important; }.signal-sweep { display: none; } }
