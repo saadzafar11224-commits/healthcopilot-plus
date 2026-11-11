@@ -265,3 +265,13 @@ button { cursor: pointer; }
 @keyframes corePulse { 0%, 100% { box-shadow: 0 0 22px rgba(27,120,181,.1); } 50% { box-shadow: 0 0 34px rgba(27,120,181,.3); } }
 @keyframes trackBreath { 0%, 100% { opacity: .6; } 50% { opacity: 1; border-color: rgba(45,94,168,.38); } }
 @media (prefers-reduced-motion: reduce) { .sparkline polyline, .trend-svg polyline, .env-chart polyline, .trend-point, .mission-orbit .orbit-earth, .mission-orbit .orbital-track, .mission-orbit .orbital-dot { animation: none !important; stroke-dashoffset: 0; opacity: 1; } }
+
+/* Precision correction: moving stroke and satellite locked to the visible ellipse */
+.sparkline polyline { stroke-dasharray: 18 132 !important; stroke-dashoffset: 0 !important; animation: sparkStrokeTravel 2.8s linear infinite !important; }
+.trend-svg polyline, .env-chart polyline { stroke-dasharray: 24 860 !important; stroke-dashoffset: 0 !important; animation: chartStrokeTravel 3.6s linear infinite !important; }
+@keyframes sparkStrokeTravel { to { stroke-dashoffset: -150px; } }
+@keyframes chartStrokeTravel { to { stroke-dashoffset: -884px; } }
+.mission-orbit .orbital-satellite-path { position: absolute; width: 176px; height: 52px; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-28deg); transform-origin: center; animation: satellitePathRevolve 7s linear infinite; pointer-events: none; }
+.mission-orbit .orbital-satellite-path .orbital-dot { position: absolute; width: 7px; height: 7px; right: -3.5px; top: 22.5px; border: 0; border-radius: 50%; background: #e9782d; box-shadow: 0 0 12px #e9782d, 0 0 24px rgba(233,120,45,.42); transform: none; }
+@keyframes satellitePathRevolve { from { transform: translate(-50%, -50%) rotate(-28deg); } to { transform: translate(-50%, -50%) rotate(332deg); } }
+@media (prefers-reduced-motion: reduce) { .sparkline polyline, .trend-svg polyline, .env-chart polyline, .mission-orbit .orbital-satellite-path { animation: none !important; stroke-dashoffset: 0 !important; } }
