@@ -248,3 +248,20 @@ button { cursor: pointer; }
 @keyframes stampIn { from { opacity: 0; transform: scale(.82) rotate(-2deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
 @keyframes reportRowIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) { .comparison-card::before, .comparison-row, .comparison-row.featured::after, .comparison-row.featured b, .report-dialog::before, .report-scan, .report-stamp, .report-row, .report-packet > small { animation: none !important; opacity: 1 !important; transform: none !important; width: auto; } }
+
+/* Live telemetry and mission-window motion */
+.sparkline polyline { stroke-dasharray: 150; stroke-dashoffset: 150; animation: graphDraw 2.2s cubic-bezier(.2,.8,.2,1) forwards, graphBreathe 4.8s 2.2s ease-in-out infinite; }
+.metric-card:nth-child(2) .sparkline polyline { animation-delay: .12s, 2.32s; }.metric-card:nth-child(3) .sparkline polyline { animation-delay: .24s, 2.44s; }.metric-card:nth-child(4) .sparkline polyline { animation-delay: .36s, 2.56s; }.metric-card:nth-child(5) .sparkline polyline { animation-delay: .48s, 2.68s; }.metric-card:nth-child(6) .sparkline polyline { animation-delay: .6s, 2.8s; }.metric-card:nth-child(7) .sparkline polyline { animation-delay: .72s, 2.92s; }
+@keyframes graphDraw { to { stroke-dashoffset: 0; } }
+@keyframes graphBreathe { 0%, 100% { opacity: .76; filter: drop-shadow(0 0 0 rgba(27,120,181,0)); } 50% { opacity: 1; filter: drop-shadow(0 0 4px currentColor); } }
+.trend-svg polyline, .env-chart polyline { stroke-dasharray: 920; stroke-dashoffset: 920; animation: chartTrace 2.4s .25s cubic-bezier(.2,.8,.2,1) forwards, chartGlow 5s 2.7s ease-in-out infinite; }
+@keyframes chartTrace { to { stroke-dashoffset: 0; } }
+@keyframes chartGlow { 0%, 100% { opacity: .78; } 50% { opacity: 1; filter: drop-shadow(0 0 7px currentColor); } }
+.trend-point { animation: pointAppear .45s ease both, pointPulse 3s 1.7s ease-in-out infinite; }.trend-point:nth-of-type(1) { animation-delay: .4s, 2.1s; }.trend-point:nth-of-type(2) { animation-delay: .55s, 2.25s; }.trend-point:nth-of-type(3) { animation-delay: .7s, 2.4s; }.trend-point:nth-of-type(4) { animation-delay: .85s, 2.55s; }.trend-point:nth-of-type(5) { animation-delay: 1s, 2.7s; }.trend-point:nth-of-type(6) { animation-delay: 1.15s, 2.85s; }.trend-point:nth-of-type(7) { animation-delay: 1.3s, 3s; }
+@keyframes pointAppear { from { opacity: 0; transform: translate(-50%, 50%) scale(.2); } to { opacity: 1; transform: translate(-50%, 50%) scale(1); } }
+@keyframes pointPulse { 0%, 100% { box-shadow: 0 0 0 1px currentColor; } 50% { box-shadow: 0 0 0 5px rgba(27,120,181,.12), 0 0 0 1px currentColor; } }
+.mission-orbit .orbit-earth { animation: corePulse 3.8s ease-in-out infinite; }.mission-orbit .orbital-track { animation: trackBreath 3.8s ease-in-out infinite; }.mission-orbit .orbital-dot { width: 176px; height: 52px; left: 50%; top: 50%; border: 0; background: transparent; box-shadow: none; transform: translate(-50%, -50%) rotate(-28deg); transform-origin: center; animation: satelliteRevolve 7s linear infinite; }.mission-orbit .orbital-dot::after { content: ''; position: absolute; width: 7px; height: 7px; right: -3px; top: 22px; border-radius: 50%; background: #e9782d; box-shadow: 0 0 12px #e9782d, 0 0 24px rgba(233,120,45,.42); }
+@keyframes satelliteRevolve { from { transform: translate(-50%, -50%) rotate(-28deg); } to { transform: translate(-50%, -50%) rotate(332deg); } }
+@keyframes corePulse { 0%, 100% { box-shadow: 0 0 22px rgba(27,120,181,.1); } 50% { box-shadow: 0 0 34px rgba(27,120,181,.3); } }
+@keyframes trackBreath { 0%, 100% { opacity: .6; } 50% { opacity: 1; border-color: rgba(45,94,168,.38); } }
+@media (prefers-reduced-motion: reduce) { .sparkline polyline, .trend-svg polyline, .env-chart polyline, .trend-point, .mission-orbit .orbit-earth, .mission-orbit .orbital-track, .mission-orbit .orbital-dot { animation: none !important; stroke-dashoffset: 0; opacity: 1; } }
