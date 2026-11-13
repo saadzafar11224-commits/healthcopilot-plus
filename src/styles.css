@@ -368,3 +368,13 @@ body { color: #18344d; background: #f4f8f7; }
 @keyframes calmAttention { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
 @media (max-width: 760px) { .mission-story:hover { transform: none; } }
 @media (prefers-reduced-motion: reduce) { .spo2-live-chart .chart-baseline.band, .spo2-live-chart .chart-line, .status-banner.review .status-banner-icon { animation: none !important; } }
+
+/* Small human-scale interactions: quiet movement for things a person can actually act on. */
+.event-row { transition: transform .22s ease, background .22s ease, padding-left .22s ease; border-radius: 4px; }
+.event-row:hover { transform: translateX(4px); padding-left: 5px; background: rgba(0,174,190,.045); }
+.saved-card { transition: transform .28s ease, box-shadow .28s ease; }
+.saved-card:hover { transform: translateY(-2px); box-shadow: 0 12px 25px rgba(17,51,84,.1); }
+.priority-item small, .rail-card small { transition: color .22s ease; }
+.priority-item:hover small, .rail-card button:hover small { color: #466f89; }
+@media (max-width: 760px) { .event-row:hover, .saved-card:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .event-row, .saved-card { transition: none !important; } }
