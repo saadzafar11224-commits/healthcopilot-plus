@@ -327,3 +327,25 @@ body { color: #18344d; background: #f4f8f7; }
 .primary-button:not(:disabled), .quiet-button, .text-button, .demo-launch { transition: transform .18s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease; }
 .primary-button:not(:disabled):hover, .quiet-button:hover, .text-button:hover, .demo-launch:hover { transform: scale(1.02); }
 .primary-button:not(:disabled):active, .quiet-button:active, .text-button:active, .demo-launch:active { transform: scale(.98); }
+
+
+/* SpO₂ alert signal: a live scan, breathing trace, and active endpoint pulse make the recheck state feel observable. */
+.spo2-live-chart { border-color: rgba(233,120,45,.22); background: repeating-linear-gradient(to bottom, transparent, transparent 34px, rgba(45,94,168,.08) 35px), linear-gradient(180deg, rgba(233,120,45,.025), rgba(45,94,168,.025)); }
+.spo2-live-chart::after { content: ''; position: absolute; top: 14px; bottom: 25px; left: -18%; width: 18%; background: linear-gradient(90deg, transparent, rgba(233,120,45,.05) 25%, rgba(233,120,45,.36) 50%, transparent 78%); filter: blur(.2px); animation: spo2Sweep 3.2s cubic-bezier(.42,0,.58,1) infinite; pointer-events: none; }
+.spo2-live-chart .chart-line { opacity: .9; animation: spo2TraceBreathe 2.4s ease-in-out infinite; }
+.spo2-live-chart .chart-point.amber { animation: spo2PointPulse 1.7s ease-in-out infinite; }
+.spo2-live-chart .chart-point.p4 { animation-delay: .55s; }
+.spo2-scan { position: absolute; top: 22px; bottom: 25px; left: 72%; width: 1px; background: linear-gradient(180deg, transparent, rgba(233,120,45,.95), transparent); box-shadow: 0 0 10px rgba(233,120,45,.55); animation: spo2ScanLine 2.6s ease-in-out infinite; pointer-events: none; }
+@keyframes spo2Sweep { 0% { transform: translateX(0); opacity: 0; } 15% { opacity: 1; } 70%, 100% { transform: translateX(660%); opacity: 0; } }
+@keyframes spo2TraceBreathe { 0%, 100% { transform: skewY(-3deg) translateY(0); opacity: .72; } 50% { transform: skewY(-3deg) translateY(-2px); opacity: 1; filter: drop-shadow(0 0 5px rgba(233,120,45,.28)); } }
+@keyframes spo2PointPulse { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 4px rgba(233,120,45,.1); } 50% { transform: scale(1.28); box-shadow: 0 0 0 7px rgba(233,120,45,.18), 0 0 14px rgba(233,120,45,.3); } }
+@keyframes spo2ScanLine { 0%, 100% { left: 68%; opacity: .25; } 50% { left: 90%; opacity: 1; } }
+
+/* Mission timeline: keep the event times visibly clear of the connector line. */
+.timeline { padding-top: 3px; }
+.timeline::before { left: 12px; right: 12px; top: 9px; background: linear-gradient(90deg, #b9ccdc, #8aa8bf 50%, #b9ccdc); opacity: .72; }
+.timeline > div { row-gap: 0; }
+.timeline b { margin-top: 17px; letter-spacing: .03em; }
+.timeline small { margin-top: 6px; line-height: 1.45; }
+@media (max-width: 760px) { .timeline::before { left: 8px; right: 8px; top: 9px; }.timeline b { margin-top: 15px; } }
+@media (prefers-reduced-motion: reduce) { .spo2-live-chart::after, .spo2-live-chart .chart-line, .spo2-live-chart .chart-point.amber, .spo2-scan { animation: none !important; } }
