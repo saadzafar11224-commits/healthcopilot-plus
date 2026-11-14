@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "0.1-demo",
+  "cachedAt": "2026-11-13T14:06:18Z",
+  "mode": "synthetic-cache",
+  "donki": {
+    "source": "NASA CCMC DONKI",
+    "endpoint": "https://ccmc.gsfc.nasa.gov/DONKI/api/",
+    "eventType": "SEP",
+    "eventTime": "2026-11-13T13:42:00Z",
+    "note": "Synthetic event envelope shaped like a DONKI SEP event. Replace with a cached API response before operational research use."
+  },
+  "noaaSwpc": {
+    "source": "NOAA SWPC GOES integral proton feed",
+    "endpoint": "https://services.swpc.noaa.gov/json/goes/primary/integral-protons-1-day.json",
+    "energy": ">=10 MeV",
+    "fluxUnit": "pfu",
+    "fluxProfile": [4.8, 7.1, 10.4, 18.2, 12.6, 8.9, 5.4],
+    "scale": "S1 illustrative crossing",
+    "note": "Flux is environmental context; it is not converted into crew dose in this prototype."
+  }
+}

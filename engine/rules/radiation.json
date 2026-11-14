@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "0.1",
+  "rules": [
+    {
+      "id": "radiation.spe.s1.v0.1",
+      "name": "NOAA S1 solar radiation storm context",
+      "condition": ">=10 MeV proton flux >= 10 pfu",
+      "unit": "pfu",
+      "source": "noaa-swpc-goes-protons",
+      "sourceUrl": "https://prod-01-alb-www-swpc.woc.noaa.gov/noaa-scales-explanation",
+      "version": "NOAA scales page accessed 2026-11-13",
+      "status": "VERIFIED",
+      "action": "Annotate environmental context; do not infer crew dose or diagnosis."
+    },
+    {
+      "id": "radiation.career-dose.guide.v0.1",
+      "name": "Career effective-dose context",
+      "condition": "<600 mSv",
+      "unit": "mSv",
+      "source": "nasa-std-3001",
+      "sourceUrl": "https://standards.nasa.gov/standard/nasa/nasa-std-3001",
+      "version": "NASA-STD-3001 Vol 1 Rev C, per supplied guide",
+      "status": "VERIFIED",
+      "action": "Display as contextual provenance only; no operational limit is shown in the UI."
+    },
+    {
+      "id": "radiation.gcr-daily.guide.v0.1",
+      "name": "GCR daily context",
+      "condition": "1.3 mSv/day",
+      "unit": "mSv/day",
+      "source": "ochmo-radiation",
+      "sourceUrl": "https://www.nasa.gov/office-of-the-chief-health-and-medical-officer/",
+      "version": "Guide-listed OCHMO overview",
+      "status": "VERIFIED",
+      "action": "Keep as research context; do not convert into a crew alert."
+    },
+    {
+      "id": "environment.co2.source-status.v0.1",
+      "name": "CO2 operational value",
+      "condition": "Not implemented",
+      "unit": "ppm",
+      "source": "nasa-std-3001",
+      "sourceUrl": "https://standards.nasa.gov/standard/nasa/nasa-std-3001",
+      "version": "Revision and section require verification",
+      "status": "TODO_VERIFY",
+      "action": "Use the current 900–1,300 ppm range only as a labeled demo band."
+    }
+  ]
+}
